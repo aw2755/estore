@@ -6,7 +6,11 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
 ## Team
 
 - Tyrone Tha
+<<<<<<< HEAD
 - Diego Avila
+=======
+- Brian Lin 
+>>>>>>> 6002b372edfbe016e6cc0459a4bf7f5d28f97996
 - 
 -
 
