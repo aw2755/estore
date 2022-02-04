@@ -10,8 +10,6 @@ An online E-store system built in Java 8=>11 and ___ _replace with other platfor
 - Brian Lin 
 - Alan Wang
 
--
-
 ## Prerequisites
 
 - Java 8=>11 (Make sure to have correct JAVA_HOME setup in your environment)
