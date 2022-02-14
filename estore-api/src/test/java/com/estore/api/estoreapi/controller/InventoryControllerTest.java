@@ -1,5 +1,5 @@
 package com.estore.api.estoreapi.controller;
 
-public class InventoryController {
+public class InventoryControllerTest {
     
 }

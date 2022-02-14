@@ -14,7 +14,7 @@ public class Product {
     static final String STRING_FORMAT = "Product [name=%s, price=%f, quantity=%d]";
 
     @JsonProperty("name") private String name;
-    @JsonProperty("price") private float price;
+    @JsonProperty("price") private double price;
     @JsonProperty("quantity") private int quantity;
 
     /**
@@ -28,7 +28,7 @@ public class Product {
      * is not provided in the JSON object, the Java field gets the default Java
      * value, i.e. 0 for int
      */
-    public Product(@JsonProperty("name") String name, @JsonProperty("price") float price, @JsonProperty("quantity") int quantity) {
+    public Product(@JsonProperty("name") String name, @JsonProperty("price") double price, @JsonProperty("quantity") int quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
@@ -54,7 +54,7 @@ public class Product {
      * Retrieves the price of the product
      * @return The price of the product
      */
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -62,7 +62,7 @@ public class Product {
      * Sets the price of the product - necessary for JSON object to Java object deserialization
      * @param price The price of the product
      */
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

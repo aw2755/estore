@@ -113,7 +113,7 @@ public class InventoryFileDAO implements InventoryDAO{
 
         // Add each product to the tree map
         for (Product product : productArray) {
-            products.put(product.getName(), product);
+            products.put(product.getName().toLowerCase(), product);
         }
 
         return true;
@@ -158,9 +158,9 @@ public class InventoryFileDAO implements InventoryDAO{
     @Override
     public Product createProduct(Product product) throws IOException {
         synchronized(products) {
-            if (!(products.containsKey(product.getName()))) {
+            if (!(products.containsKey(product.getName().toLowerCase()))) {
                 Product newProduct = new Product(product.getName(), product.getPrice(), product.getQuantity());
-                products.put(newProduct.getName(), newProduct);
+                products.put(newProduct.getName().toLowerCase(), newProduct);
                 save(); // may throw an IOException
                 return newProduct;
             }
@@ -198,6 +198,4 @@ public class InventoryFileDAO implements InventoryDAO{
                 return false;
         }
     }
-
-
 }
