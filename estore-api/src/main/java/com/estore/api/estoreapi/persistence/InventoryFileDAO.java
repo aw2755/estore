@@ -43,7 +43,7 @@ public class InventoryFileDAO implements InventoryDAO{
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public InventoryFileDAO(@Value("${products.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public InventoryFileDAO(@Value("${inventory.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();     // load the products from the file
@@ -158,10 +158,14 @@ public class InventoryFileDAO implements InventoryDAO{
     @Override
     public Product createProduct(Product product) throws IOException {
         synchronized(products) {
-            Product newProduct = new Product(product.getName(), product.getPrice(), product.getQuantity());
-            products.put(newProduct.getName(), newProduct);
-            save(); // may throw an IOException
-            return newProduct;
+            if (!(products.containsKey(product.getName()))) {
+                Product newProduct = new Product(product.getName(), product.getPrice(), product.getQuantity());
+                products.put(newProduct.getName(), newProduct);
+                save(); // may throw an IOException
+                return newProduct;
+            }
+            return null;
+            
         }
     }
 
