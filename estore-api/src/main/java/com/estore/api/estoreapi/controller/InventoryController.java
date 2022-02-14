@@ -113,7 +113,7 @@ public class InventoryController {
                 //LOG.info("already there");
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

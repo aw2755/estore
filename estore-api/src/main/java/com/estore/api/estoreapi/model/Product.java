@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Product {
     private static final Logger LOG = Logger.getLogger(Product.class.getName());
 
-    static final String STRING_FORMAT = "Product [name=%s, price=%f, quantity=%d]";
+    static final String STRING_FORMAT = "Product [name=%s, price=%2f, quantity=%d]";
 
     @JsonProperty("name") private String name;
     @JsonProperty("price") private double price;
