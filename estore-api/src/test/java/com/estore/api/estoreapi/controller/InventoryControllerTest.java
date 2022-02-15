@@ -21,7 +21,7 @@ import net.bytebuddy.agent.VirtualMachine.ForHotSpot.Connection.Response;
 /**
  * Test the Inventory Controller class
  * 
- * @author Brian Lin,Tyrone Tha
+ * @author Brian Lin,Tyrone Tha, Alan Wang
  */
 @Tag("Controller-tier")
 public class InventoryControllerTest {

@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.Product;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author Brian Lin, Tyrone Tha
+ * @author Brian Lin, Tyrone Tha, Alan Wang
  */
 @RestController
 @RequestMapping("inventory")

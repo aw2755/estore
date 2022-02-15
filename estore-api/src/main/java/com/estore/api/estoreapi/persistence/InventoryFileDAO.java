@@ -20,7 +20,7 @@ import com.estore.api.estoreapi.model.Product;
  * {@literal @}Component Spring annotation instantiates a single instance of this
  * class and injects the instance into other classes as needed
  * 
- * @author Brian Lin, Tyrone Tha
+ * @author Brian Lin, Tyrone Tha, Alan Wang
  */
 @Component
 public class InventoryFileDAO implements InventoryDAO{
