@@ -100,10 +100,19 @@ public class InventoryController {
      * GET http://localhost:8080/products/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Product[]> searchProducts(@RequestParam String name) {
+    public ResponseEntity<Product[]> searchProducts(@RequestParam String name) 
+    {
         LOG.info("GET /inventory/?name="+name);
-         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        // Replace below with your implementation
+        try
+        {
+            inventoryDAO.findProducts(name);
+            return new ResponseEntity<>(inventoryDAO.findProducts(name), HttpStatus.OK);
+        }
+        catch(Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -166,10 +175,25 @@ public class InventoryController {
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @DeleteMapping("/{name}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable String name) {
+    public ResponseEntity<Product> deleteProduct(@PathVariable String name) 
+    {
         LOG.info("DELETE /inventory/" + name);
         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try
+        {
+            if(inventoryDAO.deleteProduct(name))
+            {
+                return new ResponseEntity<>(HttpStatus.OK);
+            }
+            else
+            {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }
+        catch(Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
