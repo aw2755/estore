@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.Product;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author Brian Lin, Tyrone Tha, Alan Wang
+ * @author Brian Lin, Tyrone Tha, Alan Wang, Diego Avila
  */
 @RestController
 @RequestMapping("inventory")
@@ -36,8 +36,8 @@ public class InventoryController {
 
     /**
      * Creates a REST API controller to reponds to requests
-     * 
-     * @param productDao The {@link InventoryDAO Inventory Data Access Object} to perform CRUD operations
+     *
+     * @param //productDao The {@link InventoryDAO Inventory Data Access Object} to perform CRUD operations
      * <br>
      * This dependency is injected by the Spring Framework
      */
