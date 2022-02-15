@@ -23,7 +23,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test the Inventory File DAO class
  * 
- * @author Brian Lin
+ * @author Brian Lin, Tyrone Tha
  */
 @Tag("Persistence-tier")
 public class InventoryFileDAOTest {

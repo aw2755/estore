@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The unit test suite for the Product class
  * 
- * @author Brian Lin
+ * @author Brian Lin,Tyrone Tha
  */
 @Tag("Model-tier")
 public class ProductTest {

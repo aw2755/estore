@@ -21,7 +21,7 @@ import net.bytebuddy.agent.VirtualMachine.ForHotSpot.Connection.Response;
 /**
  * Test the Inventory Controller class
  * 
- * @author Brian Lin
+ * @author Brian Lin,Tyrone Tha
  */
 @Tag("Controller-tier")
 public class InventoryControllerTest {
@@ -47,7 +47,7 @@ public class InventoryControllerTest {
 
         // Invoke
         ResponseEntity<Product> response = inventoryController.getProduct(product.getName());
-
+    
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(product, response.getBody());
     }
