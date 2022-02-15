@@ -83,7 +83,14 @@ public class InventoryController {
     public ResponseEntity<Product[]> getProducts() {
         LOG.info("GET /inventory ");
          // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try{
+            Product[] products = inventoryDAO.getProducts();
+            return new ResponseEntity<Product[]>(products, HttpStatus.OK);
+        }catch(IOException j){
+            LOG.log(Level.SEVERE, j.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
     }
 
     /**
@@ -195,5 +202,6 @@ public class InventoryController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 }
