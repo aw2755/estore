@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.Product;
  * {@literal @}RestController Spring annotation identifies this class as a REST API
  * method handler to the Spring framework
  * 
- * @author Brian Lin
+ * @author Brian Lin, Tyrone Tha
  */
 @RestController
 @RequestMapping("inventory")
@@ -58,7 +58,18 @@ public class InventoryController {
     public ResponseEntity<Product> getProduct(@PathVariable String name) {
         LOG.info("GET /inventory/ " + name);
          // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Product product = inventoryDAO.getProduct(name);
+            if (product != null) {
+                return new ResponseEntity<>(product, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+    }
+        catch (IOException e) {
+            LOG.log(Level.SEVERE, "Error getting product", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -133,7 +144,16 @@ public class InventoryController {
     public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
         LOG.info("PUT /inventory " + product);
         // Replace below with your implementation
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        try {
+            Product updatedProduct = inventoryDAO.updateProduct(product);
+            if (updatedProduct == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(updatedProduct, HttpStatus.OK);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
