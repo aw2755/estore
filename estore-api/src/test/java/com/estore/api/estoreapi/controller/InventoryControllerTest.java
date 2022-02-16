@@ -6,8 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
-
-import com.estore.api.estoreapi.persistence.InventoryFileDAOTest;
+import com.estore.api.estoreapi.persistence.InventoryDAO;
 import com.estore.api.estoreapi.controller.InventoryController;
 import com.estore.api.estoreapi.model.Product;
 
