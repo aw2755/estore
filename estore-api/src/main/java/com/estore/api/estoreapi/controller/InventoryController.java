@@ -82,14 +82,12 @@ public class InventoryController {
     @GetMapping("")
     public ResponseEntity<Product[]> getProducts() {
         LOG.info("GET /inventory ");
-         // Replace below with your implementation
         try{
             Product[] products = inventoryDAO.getProducts();
             return new ResponseEntity<Product[]>(products, HttpStatus.OK);
         }catch(IOException j){
             LOG.log(Level.SEVERE, j.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-
         }
     }
 
