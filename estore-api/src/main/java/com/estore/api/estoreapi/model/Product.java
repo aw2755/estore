@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Represents a product entity
  * 
- * @author Brian Lin,Tyrone Tha, Alan Wang
+ * @author Brian Lin,Tyrone Tha, Alan Wang, Diego Avila
  */
 public class Product {
     private static final Logger LOG = Logger.getLogger(Product.class.getName());

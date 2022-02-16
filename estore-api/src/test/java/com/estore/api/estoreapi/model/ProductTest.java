@@ -9,7 +9,7 @@ import com.estore.api.estoreapi.model.Product;
 /**
  * The unit test suite for the Product class
  * 
- * @author Brian Lin,Tyrone Tha, Alan Wang
+ * @author Brian Lin,Tyrone Tha, Alan Wang, Diego Avila
  */
 @Tag("Model-tier")
 public class ProductTest {
