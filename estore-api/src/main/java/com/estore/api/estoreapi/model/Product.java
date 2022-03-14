@@ -90,5 +90,4 @@ public class Product {
         return String.format(STRING_FORMAT, name, price, quantity);
     }
 
-
 }

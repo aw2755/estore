@@ -85,7 +85,7 @@ public class InventoryFileDAOTest {
     }
 
     @Test
-    public void testDeleteHero() {
+    public void testDeleteProduct() {
         // Invoke
         boolean result = assertDoesNotThrow(() -> inventoryFileDAO.deleteProduct("apple"), 
         "Unexpected exception thrown");
@@ -100,7 +100,7 @@ public class InventoryFileDAOTest {
     }
 
     @Test
-    public void testCreateHero() {
+    public void testCreateProduct() {
         // Setup
         Product product = new Product("pear", 1.99, 10);
 
@@ -163,7 +163,7 @@ public class InventoryFileDAOTest {
     }
 
     @Test
-    public void testUpdateHeroNotFound() {
+    public void testUpdateProductNotFound() {
         // Setup
         Product product = new Product("grapes", 3.99, 10);
 
