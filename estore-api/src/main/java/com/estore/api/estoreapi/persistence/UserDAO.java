@@ -36,7 +36,7 @@ public interface UserDAO {
      * 
      * @throws IOException if an issue with underlying storage
      */
-    User getUser(String name) throws IOException;
+    User getUser(int id) throws IOException;
 
     /**
      * Creates and saves a {@linkplain User User}
@@ -73,5 +73,5 @@ public interface UserDAO {
      * 
      * @throws IOException if underlying storage cannot be accessed
      */
-    boolean deleteUser(String name) throws IOException;
+    boolean deleteUser(int id) throws IOException;
 }

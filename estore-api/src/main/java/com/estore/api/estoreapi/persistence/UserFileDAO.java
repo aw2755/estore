@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.User;
 @Component
 public class UserFileDAO implements UserDAO {
     private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
-    Map<String, User> Users; // Provides a local cache of the User objects
+    Map<Integer, User> users; // Provides a local cache of the User objects
                              // so that we don't need to read from the file
                              // each time
 
@@ -45,7 +45,7 @@ public class UserFileDAO implements UserDAO {
      * 
      * @throws IOException when file cannot be accessed or read from
      */
-    public UserFileDAO(@Value("${inventory.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public UserFileDAO(@Value("${user.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load(); // load the Users from the file
@@ -71,12 +71,12 @@ public class UserFileDAO implements UserDAO {
      * 
      * @return The array of {@link User User}, may be empty
      */
-    private User[] getUserArray(String containsText) { // if containsText == null, no filter
+    private User[] getUsersArray(String containsText) { // if containsText == null, no filter
         ArrayList<User> UserArrayList = new ArrayList<>();
 
-        for (User User : users.values()) {
-            if (containsText == null || user.getName().contains(containsText)) {
-                UserArrayList.add(User);
+        for (User user : users.values()) {
+            if (containsText == null || user.getUserName().contains(containsText)) {
+                UserArrayList.add(user);
             }
         }
 
@@ -117,8 +117,8 @@ public class UserFileDAO implements UserDAO {
         User[] UserArray = objectMapper.readValue(new File(filename), User[].class);
 
         // Add each User to the tree map
-        for (User User : UserArray) {
-            users.put(user.getName().toLowerCase(), user);
+        for (User user : UserArray) {
+            users.put(user.getId(), user);
         }
 
         return true;
@@ -129,7 +129,7 @@ public class UserFileDAO implements UserDAO {
      */
     @Override
     public User[] getUsers() {
-        synchronized (Users) {
+        synchronized(users) {
             return getUsersArray();
         }
     }
@@ -139,7 +139,7 @@ public class UserFileDAO implements UserDAO {
      */
     @Override
     public User[] findUsers(String containsText) {
-        synchronized (Users) {
+        synchronized(users) {
             return getUsersArray(containsText);
         }
     }
@@ -148,10 +148,10 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public User getUser(String name) {
-        synchronized (Users) {
-            if (Users.containsKey(name))
-                return Users.get(name);
+    public User getUser(int id) {
+        synchronized(users) {
+            if (users.containsKey(id))
+                return users.get(id);
             else
                 return null;
         }
@@ -161,11 +161,11 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public User createUser(User User) throws IOException {
-        synchronized (Users) {
-            if (!(Users.containsKey(User.getName().toLowerCase()))) {
-                User newUser = new User(User.getName(), User.getPrice(), User.getQuantity());
-                Users.put(newUser.getName().toLowerCase(), newUser);
+    public User createUser(User user) throws IOException {
+        synchronized(users) {
+            if (!(users.containsKey(user.getId()))) {
+                User newUser = new User(user.getId(), user.getUserName());
+                users.put(newUser.getId(), newUser);
                 save(); // may throw an IOException
                 return newUser;
             }
@@ -180,12 +180,12 @@ public class UserFileDAO implements UserDAO {
     @Override
     public User updateUser(User user) throws IOException {
         synchronized (users) {
-            if (Users.containsKey(User.getName()) == false)
-                return null; // hero does not exist
+            if (users.containsKey(user.getId()) == false)
+                return null; // user does not exist
 
-            Users.put(user.getName(), user);
+            users.put(user.getId(), user);
             save(); // may throw an IOException
-            return User;
+            return user;
         }
     }
 
@@ -193,10 +193,10 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public boolean deleteUser(String name) throws IOException {
-        synchronized (Users) {
-            if (Users.containsKey(name)) {
-                Users.remove(name);
+    public boolean deleteUser(int id) throws IOException {
+        synchronized(users) {
+            if (users.containsKey(id)) {
+                users.remove(id);
                 return save();
             } else
                 return false;
