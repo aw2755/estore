@@ -95,7 +95,7 @@ public class InventoryController {
      * the text in name
      * 
      * @param name The name parameter which contains the text used to find the {@link Product products}
-     * 
+     *
      * @return ResponseEntity with array of {@link Product product} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
@@ -104,14 +104,18 @@ public class InventoryController {
      * GET http://localhost:8080/products/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Product[]> searchProducts(@RequestParam String name) 
+    public ResponseEntity<Product> searchProducts(@RequestParam String name)
     {
         LOG.info("GET /inventory/?name="+name);
         // Replace below with your implementation
         try
         {
-            inventoryDAO.findProducts(name);
-            return new ResponseEntity<>(inventoryDAO.findProducts(name), HttpStatus.OK);
+            Product product = inventoryDAO.getProduct(name);
+            if (product != null){
+                return new ResponseEntity<Product>(product, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         }
         catch(Exception e)
         {

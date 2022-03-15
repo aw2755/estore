@@ -215,7 +215,7 @@ public class InventoryControllerTest {
         when(mockInventoryDAO.findProducts(searchString)).thenReturn(products);
 
         // Invoke
-        ResponseEntity<Product[]> response = inventoryController.searchProducts(searchString);
+        ResponseEntity<Product> response = inventoryController.searchProducts(searchString);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -230,7 +230,7 @@ public class InventoryControllerTest {
         doThrow(new IOException()).when(mockInventoryDAO).findProducts(searchString);
 
         // Invoke
-        ResponseEntity<Product[]> response = inventoryController.searchProducts(searchString);
+        ResponseEntity<Product> response = inventoryController.searchProducts(searchString);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
