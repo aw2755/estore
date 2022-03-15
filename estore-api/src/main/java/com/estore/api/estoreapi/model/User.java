@@ -14,35 +14,40 @@ public class User {
 
     static final String STRING_FORMAT = "User [id=%d, username=%s]";
 
-    @JsonProperty("id") private int id;
+    //@JsonProperty("id") private int id;
     @JsonProperty("username") private String userName;
+    @JsonProperty("username") private String password;
+    @JsonProperty("username") private String role;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String userName) {
-        this.id = id;
+    public User(@JsonProperty("username") String userName, @JsonProperty("password") String password) {
+        
         this.userName = userName;
+        this.password = password;
     }
-
-    public int getId() {
-        return id;
-    }
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 
     public String getUserName() {
         return userName;
     }
 
-
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    @Override
-    public String toString() {
-        return String.format(STRING_FORMAT, id, userName);
+    public String getPassword() {
+        return password;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    
 }

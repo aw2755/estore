@@ -26,7 +26,7 @@ import com.estore.api.estoreapi.model.User;
 @Component
 public class UserFileDAO implements UserDAO {
     private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
-    Map<Integer, User> users; // Provides a local cache of the User objects
+    Map<String, User> users; // Provides a local cache of the User objects
                              // so that we don't need to read from the file
                              // each time
 
@@ -118,7 +118,7 @@ public class UserFileDAO implements UserDAO {
 
         // Add each User to the tree map
         for (User user : UserArray) {
-            users.put(user.getId(), user);
+            users.put(user.getUserName(), user);
         }
 
         return true;
@@ -138,9 +138,9 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public User[] findUsers(String containsText) {
+    public User[] findUsers(String name) {
         synchronized(users) {
-            return getUsersArray(containsText);
+            return getUsersArray(name);
         }
     }
 
@@ -148,10 +148,10 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public User getUser(int id) {
+    public User getUser(String name) {
         synchronized(users) {
-            if (users.containsKey(id))
-                return users.get(id);
+            if (users.containsKey(name))
+                return users.get(name);
             else
                 return null;
         }
@@ -163,9 +163,9 @@ public class UserFileDAO implements UserDAO {
     @Override
     public User createUser(User user) throws IOException {
         synchronized(users) {
-            if (!(users.containsKey(user.getId()))) {
-                User newUser = new User(user.getId(), user.getUserName());
-                users.put(newUser.getId(), newUser);
+            if (!(users.containsKey(user.getUserName()))) {
+                User newUser = new User(user.getUserName(), user.getPassword());
+                users.put(newUser.getUserName(), newUser);
                 save(); // may throw an IOException
                 return newUser;
             }
@@ -180,10 +180,10 @@ public class UserFileDAO implements UserDAO {
     @Override
     public User updateUser(User user) throws IOException {
         synchronized (users) {
-            if (users.containsKey(user.getId()) == false)
+            if (users.containsKey(user.getUserName()) == false)
                 return null; // user does not exist
 
-            users.put(user.getId(), user);
+            users.put(user.getUserName(), user);
             save(); // may throw an IOException
             return user;
         }
@@ -193,10 +193,10 @@ public class UserFileDAO implements UserDAO {
      ** {@inheritDoc}
      */
     @Override
-    public boolean deleteUser(int id) throws IOException {
+    public boolean deleteUser(String name) throws IOException {
         synchronized(users) {
-            if (users.containsKey(id)) {
-                users.remove(id);
+            if (users.containsKey(name)) {
+                users.remove(name);
                 return save();
             } else
                 return false;

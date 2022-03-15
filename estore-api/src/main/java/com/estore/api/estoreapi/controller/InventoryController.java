@@ -1,6 +1,5 @@
 package com.estore.api.estoreapi.controller;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -79,7 +78,7 @@ public class InventoryController {
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @GetMapping("")
+    @GetMapping("/all")
     public ResponseEntity<Product[]> getProducts() {
         LOG.info("GET /inventory ");
         try{
@@ -129,7 +128,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of CONFLICT if {@link Product product} object already exists<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PostMapping("")
+    @PostMapping("/add")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         LOG.info("POST /inventory/ " + product);
         try {
@@ -154,7 +153,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @PutMapping("")
+    @PutMapping("/update")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product) {
         LOG.info("PUT /inventory " + product);
         // Replace below with your implementation
@@ -179,7 +178,7 @@ public class InventoryController {
      * ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/delete/{name}")
     public ResponseEntity<Product> deleteProduct(@PathVariable String name) 
     {
         LOG.info("DELETE /inventory/" + name);

@@ -32,11 +32,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUsers(@PathVariable int id) {
-        LOG.info("GET /user/ " + id);
+    public ResponseEntity<User> getUsers(@PathVariable String name) {
+        LOG.info("GET /user/ " + name);
 
         try {
-            User user = userDAO.getUser(id);
+            User user = userDAO.getUser(name);
             if (user != null) {
                 return new ResponseEntity<>(user, HttpStatus.OK);
             } else {
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping("")
-    public ResponseEntity<User[]> getUsers() {
+    public ResponseEntity<User[]> getUsers() throws Exception{
         LOG.info("GET /user ");
         try {
             User[] users = userDAO.getUsers();
@@ -61,10 +61,10 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<User[]> searchUsers(@RequestParam String userName) {
-        LOG.info("GET /user/?id="+userName);
+    public ResponseEntity<User[]> searchUsers(@RequestParam String name) {
+        LOG.info("GET /user/?id="+name);
         try {
-            User[] users = userDAO.findUsers(userName);
+            User[] users = userDAO.findUsers(name);
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch(Exception e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
@@ -102,10 +102,10 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable int id) {
-        LOG.info("DELETE /user/" + id);
+    public ResponseEntity<User> deleteUser(@PathVariable String name) {
+        LOG.info("DELETE /user/" + name);
         try {
-            if (userDAO.deleteUser(id)) {
+            if (userDAO.deleteUser(name)) {
                 return new ResponseEntity<>(HttpStatus.OK);
             }
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
