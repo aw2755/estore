@@ -17,7 +17,9 @@
 <ul class="products">
   <li *ngFor="let product of products">
     <a routerLink="/detail/{{product.name}}">
-      <span class="badge">{{product.name}}</span> <span> {{product.price}}</span> <span> {{product.quantity}}</span>
+      <span class="badge">{{product.name}}</span> 
+      <span class="badge">{{product.price}}</span> 
+      <span class="badge">{{product.quantity}}</span>
     </a>
     <button type="button" class="delete" title="delete product"
       (click)="delete(product)">x</button>
