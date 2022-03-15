@@ -61,10 +61,10 @@ public class UserController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<User[]> searchUsers(@RequestParam int id) {
-        LOG.info("GET /user/?id="+id);
+    public ResponseEntity<User[]> searchUsers(@RequestParam String userName) {
+        LOG.info("GET /user/?id="+userName);
         try {
-            User[] users = userDAO.findUsers(id);
+            User[] users = userDAO.findUsers(userName);
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch(Exception e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
