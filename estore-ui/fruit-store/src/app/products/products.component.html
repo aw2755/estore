@@ -7,17 +7,8 @@
 <div>
   <label for="new-product">Product name: </label>
   <input id="new-product" #productName />
-</div>
-
-<div>
-  <label for="new-product">Product cost: </label>
-  <input id="new-product" #productName />
-</div>
-
-<div>
-  <label for="new-product">Product quantity: </label>
-  <input id="new-product" #productName />
-  <button type="button" class="add-button" (click)="add(productName.value); productName.value=''">Add product</button>
+  
+  <button type="button" class="add-button" (click)="add(productName.value); productName.value='' "  >Add product</button>
 </div>
 
 <ul class="products">
