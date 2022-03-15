@@ -104,21 +104,22 @@ public class InventoryController {
      * GET http://localhost:8080/products/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Product> searchProducts(@RequestParam String name)
+    public ResponseEntity<Product[]> searchProducts(@RequestParam String name)
     {
         LOG.info("GET /inventory/?name="+name);
         // Replace below with your implementation
         try
         {
-            Product product = inventoryDAO.getProduct(name);
+            Product[] product = inventoryDAO.findProducts(name);
             if (product != null){
-                return new ResponseEntity<Product>(product, HttpStatus.OK);
+                return new ResponseEntity<Product[]>(product, HttpStatus.OK);
             }else{
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
         catch(Exception e)
         {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -141,7 +142,7 @@ public class InventoryController {
                 //LOG.info("already there");
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
+            return new ResponseEntity<Product>(newProduct, HttpStatus.CREATED);
         } catch (Exception e) {
             LOG.log(Level.SEVERE,e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
