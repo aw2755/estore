@@ -11,6 +11,10 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductsComponent } from './products/products.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 import { MessagesComponent } from './messages/messages.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   imports: [
@@ -25,7 +29,11 @@ import { MessagesComponent } from './messages/messages.component';
     ProductsComponent,
     ProductDetailComponent,
     MessagesComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    LoginComponent,
+    SignupComponent,
+    AdminComponent,
+    UserComponent,
   ],
   bootstrap: [ AppComponent ]
 })

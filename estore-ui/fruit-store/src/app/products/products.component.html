@@ -1,5 +1,9 @@
 <h2>My Products</h2>
-
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/products">Products</a>
+  <a routerLink="/login">Log out</a>
+</nav>
 <div>
   <label for="new-product">Product name: </label>
   <input id="new-product" #productName />
@@ -13,7 +17,7 @@
 <ul class="products">
   <li *ngFor="let product of products">
     <a routerLink="/detail/{{product.name}}">
-      <span class="badge"></span> {{product.name}}
+      <span class="badge">{{product.name}}</span> <span> {{product.price}}</span> <span> {{product.quantity}}</span>
     </a>
     <button type="button" class="delete" title="delete product"
       (click)="delete(product)">x</button>
