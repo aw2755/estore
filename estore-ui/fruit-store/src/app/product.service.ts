@@ -6,13 +6,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Product } from './product';
 import { MessageService } from './message.service';
-import { environment } from 'src/environments/environment';
 
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
 
-  private productsUrl = environment.apiBaseUrl;  // URL to web api
+  private productsUrl = "http://localhost:8080/inventory";  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -31,26 +30,12 @@ export class ProductService {
       );
   }
 
-  /** GET product by id. Return `undefined` when id not found */
-  getProductNo404<Data>(name : String): Observable<Product> {
-    const url = `${this.productsUrl}/?name=${name}`;
-    return this.http.get<Product[]>(url)
-      .pipe(
-        map(products => products[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? 'fetched' : 'did not find';
-          this.log(`${outcome} product name=${name}`);
-        }),
-        catchError(this.handleError<Product>(`getProduct name=${name}`))
-      );
-  }
-
   /** GET product by name. Will 404 if id not found */
   getProduct(name: String): Observable<Product> {
     const url = `${this.productsUrl}/${name}`;
     return this.http.get<Product>(url).pipe(
       tap(_ => this.log(`fetched product name=${name}`)),
-      catchError(this.handleError<Product>(`getProduct name=${name}`))
+      catchError(this.handleError<Product>(`${this.productsUrl}/get/${name}=${name}`))
     );
   }
 
@@ -60,7 +45,7 @@ export class ProductService {
       // if not search term, return empty product array.
       return of([]);
     }
-    return this.http.get<Product[]>(`${this.productsUrl}/?name=${term}`).pipe(
+    return this.http.get<Product[]>(`${this.productsUrl}/search/${term}`).pipe(
       tap(x => x.length ?
          this.log(`found products matching "${term}"`) :
          this.log(`no products matching "${term}"`)),
