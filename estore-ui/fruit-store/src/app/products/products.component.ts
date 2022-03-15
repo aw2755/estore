@@ -23,7 +23,7 @@ export class ProductsComponent implements OnInit {
       products => this.products = products);
   }
 
-  add(name: string): void {
+  add(name: String): void {
     name = name.trim();
     if (!name) { return; }
     this.productService.addProduct({ name } as Product)
