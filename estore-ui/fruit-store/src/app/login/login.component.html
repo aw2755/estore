@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="text-center">
+                    <h1>Login</h1>
+                    <h6>Pleaser enter info</h6>
+                </div>
+                <form>
+                    <form>
+                        <div class="mb-3">
+                          <label for="Username" class="form-label">Username</label>
+                          <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username" #userName (submit)="getUsers(userName.value); userName.value=''">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" (click)="getUsers(userName.value); userName.value=''">Login</button>
+                      </form>
+                </form>
+                <a routerLink="/signup">New user? Click here to sign up</a>
+            </div>
+        </div>
+    </div>
+</div>

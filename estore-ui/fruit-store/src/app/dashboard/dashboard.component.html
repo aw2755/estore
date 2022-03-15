@@ -1,4 +1,8 @@
 <h2>Top Products</h2>
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/products">Products</a>
+</nav>
 <div class="products-menu">
   <a *ngFor="let product of products"
       routerLink="/detail/{{product.name}}">
