@@ -18,12 +18,22 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project. plus
+Create an E-Store for variety of fruits. Our team used
+Angular for the development of the store. The initial page that a 
+User is greeted with is the login page. Users are able to login using 
+a specified user or they are able to create a new user with a unique name. Admins are 
+able to login using the same page with a unique admin username.
+There is also a dashboard where the user is able to search for products and
+view the most popular products. Admins have the option to view inventory, this takes them
+to a different page where they are able to manipulate the inventory. Once the user searches for a product
+they are taken to the product detail page where the user is able to add the product to their shopping cart.
+
+
 
 ### Purpose
-> _Provide a very brief statement about the project and the most
-> important user group and user goals._
-
+> _Create an Estore where users are able to buy fruits. Users are able to
+> search through a variety of fruits. The most frequented fruits are also displayed 
+> on the main page for User convenience._
 ### Glossary and Acronyms
 > _Provide a table of terms and acronyms._
 
