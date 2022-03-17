@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { ShoppingComponent } from './shopping/shopping.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { UserComponent } from './user/user.component';
     SignupComponent,
     AdminComponent,
     UserComponent,
+    ShoppingComponent,
   ],
   bootstrap: [ AppComponent ]
 })
