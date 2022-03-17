@@ -19,6 +19,10 @@ export class UserService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
+  ngOnInit(): void {
+      
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.usersUrl)
     .pipe(
