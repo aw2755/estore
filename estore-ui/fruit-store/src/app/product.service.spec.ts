@@ -1,14 +1,16 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {HttpClientModule} from '@angular/common/http';
+import { ProductService } from './product.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { MessageService } from './message.service';
+describe('ProductService ', () => {
+  let service: ProductService;
 
-describe('MessageService', () => {
-  let service: MessageService;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(MessageService);
-  });
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule, RouterTestingModule], 
+    providers: [ProductService]
+  }));
 
   it('should be created', () => {
     expect(service).toBeTruthy();
