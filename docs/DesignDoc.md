@@ -46,20 +46,42 @@ they are taken to the product detail page where the user is able to add the prod
 
 This section describes the features of the application.
 
-> _In this section you do not need to be exhaustive and list every
-> story.  Focus on top-level features from the Vision document and
-> maybe Epics and critical Stories._
+- Customer can see list of products
+- Customer can search for a product
+- Customer can add/remove an item to their shopping cart
+- Customer can proceed to check out their items for purchase
+- Customers and Admins can login
+- Admins can edit the inventory (add/remove)
+- Users can view all of the products (dashboard)
 
 ### Definition of MVP
-> _Provide a simple description of the Minimum Viable Product._
+> _Minimal Authentication: A user(Customer or Admin) is able to login and out of the application.
+> An admin logs in using the special admin credential. Customer Functionality: A customer is able to search
+> for a product, add and remove from shopping cart. E-Store Owner Functionality:
+> An e-store owner can add, remove, and edit the products in the inventory._ 
 
 ### MVP Features
-> _Provide a list of top-level Epics and/or Stories of the MVP._
-
+- Minimal Authentication for customer/e-store owner login & logout
+  - The server will (admittedly insecurely) trust the browser of who the user is. A simple username to login is all that is minimally required. Assume a user logging in as admin is the e-store owner.
+  - You are not expected to do full credential and session management, although the system will look different depending on who is logged in. Obviously this isn't how things are done in real life, but let's sidestep that complexity for this class.
+- Customer functionality
+  - Customer can see list of products
+  - Customer can search for a product
+  - Customer can add/remove an item to their shopping cart
+  - Customer can proceed to check out their items for purchase
+- Inventory Management
+  - E-Store owners can add, remove and edit the data on the inventory
+- Data Persistence
+  - Your system must save everything to files such that the next user will see a change in the inventory based on the previous user's actions. So if a customer had something in their shopping cart and logged out, they should see the same items in their cart when they log back in.
+  - Ordinarily, we would want to use a database for this - but this semester our system will not reach a complexity that requires a database. You learned basic file I/O in your programming courses, so utilize what you know from there.
+- Your 10% feature
+  - Cost of the item
+  - Summary Page
 ### Roadmap of Enhancements
-> _Provide a list of top-level features in the order you plan to consider them._
-
-
+- Customers are able to search and select products
+- Customers and Admins have different visibility of the website
+- Admins can manipulate inventory
+- 10% features
 ## Application Domain
 
 This section describes the application domain.
@@ -95,8 +117,8 @@ Both the ViewModel and Model are built using Java and Spring Framework. Details 
 This section describes the web interface flow; this is how the user views and interacts
 with the e-store application.
 
-> _Provide a summary of the application's user interface.  Describe, from
-> the user's perspective, the flow of the pages in the web application._
+> _The user is able to navigate from the login screen to the dashboard to the checkout/confirmation
+> page. Each product has a details page which has a button that enables the customer to add to their cart._
 
 
 ### View Tier
@@ -105,11 +127,8 @@ with the e-store application.
 > responsibilities.  This should be a narrative description, i.e. it has
 > a flow or "story line" that the reader can follow._
 
-> _You must also provide sequence diagrams as is relevant to a particular aspects 
-> of the design that you are describing.  For example, in e-store you might create a 
-> sequence diagram of a customer searching for an item and adding to their cart. 
-> Be sure to include an relevant HTTP reuqests from the client-side to the server-side 
-> to help illustrate the end-to-end flow._
+> _There is an admin view that has access to the inventory details as well as the ability to manipulate products.
+> There is also a Customer page that allows customers to add products from the inventory into their shopping cart._
 
 
 ### ViewModel Tier
