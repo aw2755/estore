@@ -86,7 +86,7 @@ This section describes the features of the application.
 
 This section describes the application domain.
 
-![Domain Model](domain-model-placeholder.png)
+![Domain Model](domain.png)
 
 > _Provide a high-level overview of the domain for this application. You
 > can discuss the more important domain entities and their relationship
@@ -170,6 +170,8 @@ with the e-store application.
 > criteria tests failing, and the number of user stories that
 > have not had any testing yet. Highlight the issues found during
 > acceptance testing and if there are any concerns._
+> We were able to test all of our acceptance tests with success. The only
+> tests we have yet to do is that off the front-end.
 
 ### Unit Testing and Code Coverage
 > _Discuss your unit testing strategy. Report on the code coverage
@@ -177,3 +179,6 @@ with the e-store application.
 > coverage targets, why you selected those values, and how well your
 > code coverage met your targets. If there are any anomalies, discuss
 > those._
+> The unit testing strategy we did was writing part of the code and testing.
+> Therefore we used a incremental kind of style because we basically
+> write a bit of code, test it, then write more. 
