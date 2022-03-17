@@ -18,7 +18,7 @@ geometry: margin=1in
 
 ## Executive Summary
 
-This is a summary of the project.
+This is a summary of the project. plus
 
 ### Purpose
 > _Provide a very brief statement about the project and the most
