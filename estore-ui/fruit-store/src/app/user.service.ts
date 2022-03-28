@@ -55,22 +55,12 @@ export class UserService {
   }
 
     /** POST: add a new User to the server */
-    addUser(user: User): Observable<User> {
-      return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
-        tap((newUser: User) => this.log(`added user w/ name=${newUser.name}`)),
-        catchError(this.handleError<User>('adduser'))
-      );
-    }
-
-    /** DELETE: delete the user from the server */
-    deleteUser(name: String): Observable<User> {
-    const url = `${this.usersUrl}/${name}`;
-
-    return this.http.delete<User>(url, this.httpOptions).pipe(
-      tap(_ => this.log(`deleted user name=${name}`)),
-      catchError(this.handleError<User>('deleteUser'))
-    );
-  }
+  // addUser(user: User): Observable<User> {
+  //   return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
+  //       tap((newUser: User) => this.log(`added user w/ name=${newUser.username}`)),
+  //       catchError(this.handleError<User>('adduser'))
+  //     );
+  //   }
 
 /**
    * Handle Http operation that failed.

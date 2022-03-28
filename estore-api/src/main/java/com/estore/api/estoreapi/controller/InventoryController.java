@@ -80,7 +80,7 @@ public class InventoryController {
      */
     @GetMapping("")
     public ResponseEntity<Product[]> getProducts() {
-        LOG.info("GET /inventory ");
+        LOG.info("GET /inventory");
         try{
             Product[] products = inventoryDAO.getProducts();
             return new ResponseEntity<Product[]>(products, HttpStatus.OK);

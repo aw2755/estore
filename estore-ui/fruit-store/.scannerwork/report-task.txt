@@ -1,0 +1,6 @@
+projectKey=estore-app
+serverUrl=http://localhost:9000
+serverVersion=9.3.0.51899
+dashboardUrl=http://localhost:9000/dashboard?id=estore-app
+ceTaskId=AX--Mked99G09_UQgQSs
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AX--Mked99G09_UQgQSs
