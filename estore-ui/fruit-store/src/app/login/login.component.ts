@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   getUsers(username: String): void {
     if (username == "admin") {
-        this.router.navigateByUrl("/admin");
+        this.router.navigateByUrl("/products");
     }
     else
     {
