@@ -7,8 +7,12 @@
 <div>
   <label for="new-product">Product name: </label>
   <input id="new-product" #productName />
+  <label for="new-product">Product price: </label>
+  <input id="new-product" #productPrice />
+  <label for="new-product">Product quantity: </label>
+  <input id="new-product" #productQuantity />
   
-  <button type="button" class="add-button" (click)="add(productName.value); productName.value='' "  >Add product</button>
+  <button type="button" class="add-button" (click)="add(productName.value, productPrice.value, productQuantity.value); productName.value=''; productPrice.value=''; productQuantity.value=''" >Add product</button>
 </div>
 
 <ul class="products">

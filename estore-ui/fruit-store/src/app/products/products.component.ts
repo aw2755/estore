@@ -23,11 +23,21 @@ export class ProductsComponent implements OnInit {
       products => this.products = products);
   }
 
-  add(name: string): void {
+  add(name: string, price: string, quantity:string): void {
     name = name.trim();
+    let prices = parseFloat(price);
+    let quantities = parseInt(quantity);
+
+    const product : Product = {
+      name: name,
+      price: prices,
+      quantity: quantities
+    }
+
     if (!name) { return; }
-    this.productService.addProduct({ name } as Product)
+    this.productService.addProduct(product)
       .subscribe(product => {
+        this.products.push(product)
       });
   }
 
