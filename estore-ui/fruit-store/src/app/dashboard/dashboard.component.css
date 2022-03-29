@@ -1,8 +1,16 @@
 /* DashboardComponent's private CSS styles */
 
-h2 {
-    text-align: center;
-  }
+.SC
+{
+  text-align: right;
+  padding: 0px;
+}
+
+h2 
+{
+  text-align: center;
+  text-decoration: underline;
+}
   
   .products-menu {
     padding: 0;
@@ -16,6 +24,7 @@ h2 {
     justify-content: space-around;
     align-content: flex-start;
     align-items: flex-start;
+
   }
   
   a {
@@ -43,6 +52,7 @@ h2 {
       width: 18%;
       box-sizing: content-box;
     }
+
   }
   
   a:hover {
@@ -53,6 +63,7 @@ h2 {
 h1 {
   margin-bottom: 0;
 }
+
 nav a {
   padding: 1rem;
   text-decoration: none;
@@ -60,7 +71,7 @@ nav a {
   display: inline-block;
   background-color: #e8e8e8;
   color: #3d3d3d;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 nav a:hover {
@@ -70,3 +81,27 @@ nav a:hover {
 nav a.active {
   background-color: black;
 }
+
+div :hover
+{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 1s ease;
+}
+
+button
+{
+  @extend .center-content;
+	padding: 5px 5px;
+  font-size: 12px;
+  cursor: cell;
+  
+	border-radius: 10px;
+  
+	background-color: white;
+	color: black;
+  
+}
+
+

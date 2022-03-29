@@ -26,7 +26,16 @@ export class ProductsComponent implements OnInit {
   add(name: string, price: string, quantity:string): void {
     name = name.trim();
     let prices = parseFloat(price);
+    if(prices < 0)
+    {
+      prices = 1;
+    }
+    
     let quantities = parseInt(quantity);
+    if(quantities <= 0)
+    {
+      quantities = 1;
+    }
 
     const product : Product = {
       name: name,
