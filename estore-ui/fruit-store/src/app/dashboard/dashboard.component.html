@@ -1,14 +1,24 @@
-<h2>Top Products</h2>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/products">Products</a>
-  <a routerLink="/login">Log out</a>
-</nav>
-<div class="products-menu">
-  <a *ngFor="let product of products"
-      routerLink="/detail/{{product.name}}">
-      {{product.name}}
+<nav class = "SC">  
+  <a routerLink="/shopping">
+    <img alt="shoppingCart" src="https://media.istockphoto.com/vectors/shopping-cart-icon-isolated-on-white-background-vector-id1206806317?k=20&m=1206806317&s=612x612&w=0&h=waK8qOHV2Fgz2ntEWHWBQtXpNDAQ_wdhd4tkTUz6tfE=" width="20" height="20">
   </a>
+</nav>
+  <nav>
+    <a routerLink="/login">Log out</a>
+  </nav>
+  
+
+  <app-product-search></app-product-search>
+
+<h2>Products</h2>
+<div class="products-menu">
+  <a *ngFor="let product of products">
+      <p>{{product.name}}</p>
+      <div>Price: ${{product.price}}</div>
+      <div>Amount: {{product.quantity}}</div>
+      <button type="button" title="add-to-cart">add to cart</button>
+  </a>
+  
 </div>
 
-<app-product-search></app-product-search>
+
