@@ -29,10 +29,12 @@ import com.estore.api.estoreapi.model.User;
 public class UserController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserDAO userDAO;
+    private InventoryDAO inventoryDAO;
     
 
-    public UserController(UserDAO userDAO) {
+    public UserController(UserDAO userDAO, InventoryDAO inventoryDAO) {
         this.userDAO = userDAO;
+        this.inventoryDAO = inventoryDAO;
     }
 
     @GetMapping("/{name}")
@@ -79,7 +81,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{username}/cart")
+    @GetMapping("/{username}/cart/all")
     public ResponseEntity<ArrayList<Product>> getCartProducts(@PathVariable String username) {
         LOG.info("GET /" + username + "/cart");
         try {
@@ -92,11 +94,12 @@ public class UserController {
         }
     }
 
-    @PutMapping("{username}/cart/")
-    public ResponseEntity<User> addProduct(@PathVariable String username, @RequestBody Product product) {
+    @PutMapping("{username}/cart/add")
+    public ResponseEntity<User> addProduct(@PathVariable String username, @RequestBody String name) {
+        LOG.info("Adding " + name);
         try {
             User selectedUser = userDAO.getUser(username);
-            selectedUser.addProduct(product);
+            selectedUser.addProduct(inventoryDAO.getProduct(name));
             User updated = userDAO.updateUser(selectedUser);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         } catch(Exception e) {
@@ -105,9 +108,9 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/cart/{name}")
+    @PutMapping("/{username}/cart/remove/{name}")
     public ResponseEntity<User> deleteProduct(@PathVariable String username, @PathVariable String name) {
-        LOG.info("DELETE /user/" + username + "/" + name);
+        LOG.info("DELETE /user/" + username + "/cart/remove/" + name);
         try {
             User selectedUser = userDAO.getUser(username);
             selectedUser.deleteProduct(name);
