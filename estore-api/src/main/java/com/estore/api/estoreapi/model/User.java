@@ -1,5 +1,7 @@
 package com.estore.api.estoreapi.model;
 
+import java.util.ArrayList;
+
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,24 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Brian Lin
  */
 public class User {
-    private static final Logger LOG = Logger.getLogger(Product.class.getName());
+    private static final Logger LOG = Logger.getLogger(User.class.getName());
 
-    static final String STRING_FORMAT = "User [id=%d, username=%s]";
-
-    @JsonProperty("id") private int id;
     @JsonProperty("username") private String userName;
+    private ArrayList<Product> cart;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String userName) {
-        this.id = id;
+    public User(@JsonProperty("username") String userName) {
         this.userName = userName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.cart = new ArrayList<>();
     }
 
     public String getUserName() {
@@ -38,9 +30,25 @@ public class User {
         this.userName = userName;
     }
 
+    public void addProduct(Product product) {
+        this.cart.add(product);
+    }
+
+    public void deleteProduct(String productName) {
+        for (Product product : this.cart) {
+            if (productName.equals(product.getName())) {
+                cart.remove(product);
+            }
+        }
+    }
+
+    public ArrayList<Product> getProducts() {
+        return cart;
+    }
+
     @Override
     public String toString() {
-        return "User [id=" + id + ", userName=" + userName + "]";
+        return "User [userName=" + userName + ", cart=" + cart + "]";
     }
 
 

@@ -16,6 +16,4 @@ public interface UserDAO {
 
     User updateUser(User user) throws IOException;
 
-    boolean deleteUser(String name) throws IOException;
-
 }
