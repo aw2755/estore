@@ -176,7 +176,7 @@ public class InventoryFileDAO implements InventoryDAO{
     public Product updateProduct(Product product) throws IOException {
         synchronized(products) {
             if (products.containsKey(product.getName()) == false)
-                return null;  // hero does not exist
+                return null;  // product does not exist
 
             products.put(product.getName(),product);
             save(); // may throw an IOException

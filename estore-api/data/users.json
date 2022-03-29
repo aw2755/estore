@@ -1,1 +1,1 @@
-[{"id":1,"username":"admin"}]
+[{"username":"alan","products":[{"name":"gualupe","price":1.0,"quantity":10},{"name":"cantalope","price":10.0,"quantity":0},{"name":"orange","price":5.0,"quantity":5}]},{"username":"brian","products":[{"name":"orange","price":5.0,"quantity":5}]},{"username":"tupid","products":[{"name":"gualupe","price":1.0,"quantity":10},{"name":"orange","price":5.0,"quantity":5}]}]
