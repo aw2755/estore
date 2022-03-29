@@ -1,4 +1,6 @@
 /* productsComponent's private CSS styles */
+
+
 .products {
     margin: 0 0 2em 0;
     list-style-type: none;
@@ -74,7 +76,6 @@
   }
   
   button.delete {
-    position: absolute;
     left: 210px;
     top: 5px;
     background-color: white;
@@ -100,7 +101,7 @@ nav a {
   display: inline-block;
   background-color: #e8e8e8;
   color: #3d3d3d;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 nav a:hover {
@@ -110,3 +111,66 @@ nav a:hover {
 nav a.active {
   background-color: black;
 }
+
+.products-menu 
+{
+  padding: 0;
+  margin: auto;
+  max-width: 1000px;
+
+  /* flexbox */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  align-items: flex-start;
+
+}
+
+a {
+  background-color: #3f525c;
+  border-radius: 80px;
+  border: 10px solid white;
+  padding: 1rem;
+  font-size: 1.2rem;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  min-width: 70px;
+  margin: .5rem auto;
+  box-sizing: border-box;
+
+  /* flexbox */
+  order: 0;
+  flex: 0 1 auto;
+  align-self: auto;
+}
+
+@media (min-width: 600px) {
+  a {
+    width: 18%;
+    box-sizing: content-box;
+  }
+}
+
+.info
+{
+  left: 210px;
+    top: 5px;
+    background-color: white;
+    color:  #525252;
+    font-size: 1.1rem;
+    margin: 0;
+    padding: 1px 10px 3px 10px;
+}
+
+button.info:hover 
+{
+    background-color: #525252;
+    color: white;
+    cursor: help;
+  }
+

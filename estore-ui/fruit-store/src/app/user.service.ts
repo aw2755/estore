@@ -55,12 +55,12 @@ export class UserService {
   }
 
     /** POST: add a new User to the server */
-  // addUser(user: User): Observable<User> {
-  //   return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
-  //       tap((newUser: User) => this.log(`added user w/ name=${newUser.username}`)),
-  //       catchError(this.handleError<User>('adduser'))
-  //     );
-  //   }
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(this.usersUrl, user, this.httpOptions).pipe(
+        tap((newUser: User) => this.log(`added user w/ name=${newUser.username}`)),
+         catchError(this.handleError<User>('adduser'))
+       );
+     }
 
 /**
    * Handle Http operation that failed.

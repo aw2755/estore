@@ -1,26 +1,25 @@
-<h2>My Products</h2>
 <nav>
-  <a routerLink="/login">Log out</a>
+  <a routerLink="/login" class = "SC">Log out</a>
 </nav>
 <div>
   <label for="new-product">Product name: </label>
-  <input id="new-product" #productName />
+  <input id="new-product" #productName placeholder="name..."/>
   <label for="new-product">Product price: </label>
-  <input id="new-product" #productPrice />
+  <input id="new-product" #productPrice placeholder="price...(negative value = 1)"/>
   <label for="new-product">Product quantity: </label>
-  <input id="new-product" #productQuantity />
+  <input id="new-product" #productQuantity placeholder="amount...(negative or 0 value = 1)"/>
   
   <button type="button" class="add-button" (click)="add(productName.value, productPrice.value, productQuantity.value); productName.value=''; productPrice.value=''; productQuantity.value=''" >Add product</button>
 </div>
 
-<ul class="products">
-  <li *ngFor="let product of products">
-    <a routerLink="/detail/{{product.name}}">
-      <span class="badge">{{product.name}}</span> 
-      <span class="badge">{{product.price}}</span> 
-      <span class="badge">{{product.quantity}}</span>
-    </a>
-    <button type="button" class="delete" title="delete product"
+<ul class=".products-menu">
+  <a *ngFor="let product of products" >
+      <p class = ".name">{{product.name}}</p>
+      <div>Price ${{product.price}}</div>
+      <div>Amount: {{product.quantity}}</div>
+      <button routerLink="/detail/{{product.name}}" type="button" class="info" title="product-info">Edit</button>
+      <button type="button" class="delete" title="delete product"
       (click)="delete(product)">x</button>
-  </li>
+  </a>
+  
 </ul>

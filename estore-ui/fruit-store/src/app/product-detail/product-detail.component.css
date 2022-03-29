@@ -22,3 +22,8 @@ label {
     color: #ccc;
     cursor: auto;
   }
+
+.one
+{
+  content: "\A";
+}

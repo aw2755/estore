@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.logging.Level;
 
+import com.estore.api.estoreapi.persistence.InventoryDAO;
 import com.estore.api.estoreapi.persistence.UserDAO;
+import com.estore.api.estoreapi.model.Product;
 import com.estore.api.estoreapi.model.User;
 
 @RestController
@@ -25,13 +29,16 @@ import com.estore.api.estoreapi.model.User;
 public class UserController {
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private UserDAO userDAO;
+    private InventoryDAO inventoryDAO;
+    
 
-    public UserController(UserDAO userDAO) {
+    public UserController(UserDAO userDAO, InventoryDAO inventoryDAO) {
         this.userDAO = userDAO;
+        this.inventoryDAO = inventoryDAO;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUsers(@PathVariable String name) {
+    @GetMapping("/{name}")
+    public ResponseEntity<User> getUser(@PathVariable String name) {
         LOG.info("GET /user/ " + name);
 
         try {
@@ -59,17 +66,6 @@ public class UserController {
         }
     }
 
-    @GetMapping("/")
-    public ResponseEntity<User[]> searchUsers(@RequestParam String name) {
-        LOG.info("GET /user/?id="+name);
-        try {
-            User[] users = userDAO.findUsers(name);
-            return new ResponseEntity<>(users, HttpStatus.OK);
-        } catch(Exception e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 
     @PostMapping("")
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -85,17 +81,43 @@ public class UserController {
         }
     }
 
-    @PutMapping("")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
-        LOG.info("PUT /user " + user);
+    @GetMapping("/{username}/cart/all")
+    public ResponseEntity<ArrayList<Product>> getCartProducts(@PathVariable String username) {
+        LOG.info("GET /" + username + "/cart");
         try {
-            User updatedUser = userDAO.updateUser(user);
-            if (updatedUser == null) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-        } catch (Exception e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            User selectedUser = userDAO.getUser(username);
+            ArrayList<Product> products = selectedUser.getProducts();
+            return new ResponseEntity<>(products, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("{username}/cart/add")
+    public ResponseEntity<User> addProduct(@PathVariable String username, @RequestBody String name) {
+        LOG.info("Adding " + name);
+        try {
+            User selectedUser = userDAO.getUser(username);
+            selectedUser.addProduct(inventoryDAO.getProduct(name));
+            User updated = userDAO.updateUser(selectedUser);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        } catch(Exception e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{username}/cart/remove/{name}")
+    public ResponseEntity<User> deleteProduct(@PathVariable String username, @PathVariable String name) {
+        LOG.info("DELETE /user/" + username + "/cart/remove/" + name);
+        try {
+            User selectedUser = userDAO.getUser(username);
+            selectedUser.deleteProduct(name);
+            User updated = userDAO.updateUser(selectedUser);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        } catch(Exception e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
