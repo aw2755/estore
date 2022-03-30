@@ -13,17 +13,11 @@ import { Product} from '../product';
 })
 export class LoginComponent implements OnInit {
 
-  products: Product[] = [];
-  currentUser!: User;
+  
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    try {
-      this.currentUser = JSON.parse(sessionStorage['currentUser']);
-      } catch (e: any) {
-        this.router.navigate(['/login']);
-      }
   }
 
   getUsers(name: string): void {

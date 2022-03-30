@@ -3,6 +3,7 @@ import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { User } from '../user';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -10,15 +11,18 @@ import { User } from '../user';
 })
 export class DashboardComponent implements OnInit {
   products: Product[] = [];
+  currentUser!: User;
 
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
     this.getProducts();
+   
+      this.currentUser = JSON.parse(sessionStorage['currentUser']);
+      
+  
+    
   }
-  /**
-   * get user
-   */
 
   getProducts(): void {
     this.productService.getProducts()
