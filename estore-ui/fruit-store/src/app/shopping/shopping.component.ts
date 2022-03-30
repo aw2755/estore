@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product';
-import { ProductService } from '../product.service';
-import { User } from '../user';
+
 @Component({
   selector: 'app-shopping',
   templateUrl: './shopping.component.html',
@@ -9,23 +7,9 @@ import { User } from '../user';
 })
 export class ShoppingComponent implements OnInit {
 
-  products: Product[] = [];
-  currentUser!: User;
-
-  constructor(private productService: ProductService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.currentUser.shoppingCat = [];
-   
-      this.currentUser = JSON.parse(sessionStorage['currentUser']);
-      
-  
-    
-  }
-
-  getProducts(): void {
-    this.productService.getProducts()
-      .subscribe(products => this.products = products.slice(0, products.length));
   }
 
 }
