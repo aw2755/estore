@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../product';
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -13,7 +14,7 @@ export class ShoppingComponent implements OnInit {
   cart: Product[] = [];
   currentUser!: User;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router : Router) { }
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage['currentUser']);
@@ -29,6 +30,11 @@ export class ShoppingComponent implements OnInit {
 
   remove(name : String): void {
     this.userService.removeProduct(this.currentUser.username, name).subscribe();
+  }
+
+  checkout(): void {
+    this.userService.checkoutProducts(this.currentUser.username).subscribe();
+    this.router.navigateByUrl("/dashboard");
   }
 
 }

@@ -21,8 +21,6 @@ export class UserService {
     private messageService: MessageService) { }
 
   ngOnInit(): void {
-  
-      
   }
 
   getUsers(): Observable<User[]> {
@@ -85,6 +83,14 @@ export class UserService {
     return this.http.put<User>(url, this.httpOptions).pipe(
       tap(_ => this.log(`remove from cart`)),
       catchError(this.handleError<User>(`removeProduct`))
+    );
+  }
+
+  checkoutProducts(username : String): Observable<User> {
+    const url = `${this.usersUrl}/${username}/cart/checkout`;
+    return this.http.put<User>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`checkout from cart`)),
+      catchError(this.handleError<User>(`checkoutProducts`))
     );
   }
 
