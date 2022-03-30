@@ -23,33 +23,18 @@ export class LoginComponent implements OnInit {
   getUsers(name: string): void 
   {
     this.userService.getUser(name)
-<<<<<<< HEAD
       .subscribe(user => {
         if (user) {
           if (user.username.normalize() === "admin".normalize()) {
             this.router.navigate(['/products']);
             return;
           }
-=======
-
-      .subscribe(user => 
-        {
-        if (user) 
-        {
->>>>>>> cc57f0a197a3f31a10e393941b2c191ecb144ea9
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.router.navigate(['/dashboard']);
         } else 
         {
           alert('User "' + name + '" not found');
         }
-  
-<<<<<<< HEAD
       });
   }
 }
-=======
-        });
-   }
-}
->>>>>>> cc57f0a197a3f31a10e393941b2c191ecb144ea9
