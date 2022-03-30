@@ -18,7 +18,7 @@ export class ShoppingComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser = JSON.parse(sessionStorage['currentUser']);
-    this.currentUser.shoppingCat = [];
+    this.cart = this.currentUser.shoppingCat;
     this.getItems();
   }
 
@@ -26,6 +26,14 @@ export class ShoppingComponent implements OnInit {
     this.userService.getAll(this.currentUser.username).subscribe(
       cart => this.cart = cart
     );
+  }
+
+  calculateTotal(): number {
+    let total : number = 0;
+    for (let i = 0; i < this.cart.length; i++) {
+      total = total + this.cart[i].price;
+    }
+    return total;
   }
 
   remove(name : String): void {
@@ -38,7 +46,8 @@ export class ShoppingComponent implements OnInit {
   {
       this.userService.checkoutProducts(this.currentUser.username).subscribe();
       this.router.navigateByUrl("/dashboard");
-      alert("You have successfully checked out")
+      alert("You have successfully checked out, your total is: " + this.calculateTotal())
   }
+
 
 }

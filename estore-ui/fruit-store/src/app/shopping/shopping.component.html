@@ -16,8 +16,8 @@
         <button type="button" class="delete" title="delete product" (click)="remove(product.name)">x</button>
       </div>
     </li>
-    <div>
-      Total price: 
+    <div id="total">
+      <p>Total : {{calculateTotal()}}</p>
     </div>
   </ul>
 
