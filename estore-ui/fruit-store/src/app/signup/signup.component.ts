@@ -32,6 +32,7 @@ export class SignupComponent implements OnInit {
 
     if (!username) {return;}
     this.userService.addUser(user).subscribe(user => {this.users.push(user)
+      alert('User "' + username + '" has been created');
     })
   }
 
