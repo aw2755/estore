@@ -3,7 +3,7 @@
 .SC
 {
   text-align: right;
-  padding: 0px;
+  
 }
 
 h2 
@@ -27,9 +27,9 @@ h2
 
   }
   
-  a {
+  a.m {
     background-color: #3f525c;
-    border-radius: 2px;
+    border-radius: 20px;
     padding: 1rem;
     font-size: 1.2rem;
     text-decoration: none;
@@ -48,15 +48,15 @@ h2
   }
   
   @media (min-width: 600px) {
-    a {
+    a.m {
       width: 18%;
       box-sizing: content-box;
     }
 
   }
   
-  a:hover {
-    background-color: #000;
+  a.m:hover {
+    background-color: pink;
   }
 
     /* AppComponent's private CSS styles */
@@ -64,8 +64,7 @@ h1 {
   margin-bottom: 0;
 }
 
-nav a {
-  padding: 1rem;
+nav a.m {
   text-decoration: none;
   margin-top: 10px;
   display: inline-block;
@@ -74,12 +73,13 @@ nav a {
   border-radius: 5px;
 }
 
-nav a:hover {
+nav a.m:hover {
   color: white;
   background-color: #42545C;
 }
-nav a.active {
-  background-color: black;
+
+nav a.m.active {
+  background-color: rgb(241, 132, 132);
 }
 
 div :hover
@@ -87,7 +87,8 @@ div :hover
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
-    transition: 1s ease;
+    color: black;
+    transition: .01s ease;
 }
 
 button

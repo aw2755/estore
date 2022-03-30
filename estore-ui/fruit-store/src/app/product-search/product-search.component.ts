@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
-import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -21,9 +19,12 @@ export class ProductSearchComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   // Push a search term into the observable stream.
-  search(term: string): void {
+  search(term: string): void 
+  {
     this.searchTerms.next(term);
   }
+
+  
 
   ngOnInit(): void {
     this.products$ = this.searchTerms.pipe(

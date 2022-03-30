@@ -1,10 +1,18 @@
 <div id="search-component">
     <label for="search-box">Product Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search..."/>
+    <form>
+      <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search..." autocomplete="off"/>
+      <button type="submit">Search</button>
+    </form>
+    
   
     <ul class="search-result">
-      <li *ngFor="let product of products$ | async">
-          Product entered: {{product.name}}
+        <li *ngFor="let product of products$ | async" class = "m">
+        <p>{{product.name}}</p>
+        <div>Price: ${{product.price}}</div>
+        <div>Amount: {{product.quantity}}</div>
+        <button type="button" title="add-to-cart">add to cart</button>
       </li>
+      
     </ul>
   </div>

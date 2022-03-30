@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -22,12 +23,15 @@ export class SignupComponent implements OnInit {
     .subscribe(users => this.users = users);
   }
 
-  //  add(user : User): void {
-    
-  //    if (!user) { return; }
-  //    this.userService.addUser({ user } as User)
-  //      .subscribe((user: User) => {
-  //        this.users.push(user);
-  //      });
-  //  }
+
+  add(username:string): void{
+    const user : User = {
+      username: username,
+    }    
+
+    if (!username) {return;}
+    this.userService.addUser(user).subscribe(user => {this.users.push(user)
+    })
+  }
+
 }
