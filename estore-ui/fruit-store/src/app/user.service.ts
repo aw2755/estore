@@ -9,7 +9,7 @@ import { User } from './user';
 })
 export class UserService {
 
-  private usersUrl = "https://localhost:8080/user";
+  private usersUrl = "http://localhost:8080/user";
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
