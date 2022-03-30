@@ -14,21 +14,12 @@ public class User {
 
     static final String STRING_FORMAT = "User [id=%d, username=%s]";
 
-    @JsonProperty("id") private int id;
     @JsonProperty("username") private String userName;
 
-    public User(@JsonProperty("id") int id, @JsonProperty("username") String userName) {
-        this.id = id;
+    public User(@JsonProperty("username") String userName) {
         this.userName = userName;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUserName() {
         return userName;
@@ -40,7 +31,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", userName=" + userName + "]";
+        return "User [userName=" + userName + "]";
     }
 
 

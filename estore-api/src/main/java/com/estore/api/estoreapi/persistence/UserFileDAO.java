@@ -164,7 +164,7 @@ public class UserFileDAO implements UserDAO {
     public User createUser(User user) throws IOException {
         synchronized(users) {
             if (!(users.containsKey(user.getUserName()))) {
-                User newUser = new User(user.getId(), user.getUserName());
+                User newUser = new User(user.getUserName());
                 users.put(newUser.getUserName(), newUser);
                 save(); // may throw an IOException
                 return newUser;
