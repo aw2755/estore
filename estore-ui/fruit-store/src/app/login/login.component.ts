@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         } else 
         {
-          alert('User "' + name + '" not found');
+          alert('User "' + name + '" not found please sign up');
         }
   
       });
