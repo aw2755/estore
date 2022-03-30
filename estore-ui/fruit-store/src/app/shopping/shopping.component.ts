@@ -29,6 +29,7 @@ export class ShoppingComponent implements OnInit {
 
   remove(name : String): void {
     this.userService.removeProduct(this.currentUser.username, name).subscribe();
+    alert("removed " + name + " from cart");
   }
 
 }
