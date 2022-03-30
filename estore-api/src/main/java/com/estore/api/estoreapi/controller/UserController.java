@@ -122,4 +122,18 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/{username}/cart/checkout")
+    public ResponseEntity<User> checkoutProducts(@PathVariable String username) {
+        LOG.info("checkout");
+        try {
+            User selectedUser = userDAO.getUser(username);
+            selectedUser.checkout();
+            User updated = userDAO.updateUser(selectedUser);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        } catch(Exception e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

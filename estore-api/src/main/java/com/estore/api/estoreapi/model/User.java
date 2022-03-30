@@ -46,6 +46,10 @@ public class User {
         return cart;
     }
 
+    public void checkout() {
+        this.cart.clear();
+    }
+
     @Override
     public String toString() {
         return "User [userName=" + userName + ", cart=" + cart + "]";
