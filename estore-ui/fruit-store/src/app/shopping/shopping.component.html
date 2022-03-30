@@ -5,6 +5,11 @@
 <hr> 
 <h2>Products</h2>
 <div class="products-menu">
-  <!---->
+  <ul class="products">
+    <li *ngFor="let product of cart">
+      <p>{{product.name}}</p>
+      <button type="button" class="delete" title="delete product" (click)="remove(product.name)">x</button>
+    </li>
+  </ul>
 
 </div>

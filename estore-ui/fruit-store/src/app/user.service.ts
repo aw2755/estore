@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { MessageService } from './message.service';
+import { Product } from './product';
 import { User } from './user';
 
 @Injectable({
@@ -61,8 +62,31 @@ export class UserService {
         tap((newUser: User) => this.log(`added user w/ name=${newUser.username}`)),
          catchError(this.handleError<User>('adduser'))
        );
-     }
+  }
 
+  getAll(username : String): Observable<Product[]> {
+    const url = `${this.usersUrl}/${username}/cart/all`;
+    return this.http.get<Product[]>(url).pipe(
+      tap(_ => this.log(`retrieve cart`)),
+      catchError(this.handleError<Product[]>(`getAll`))
+    );
+  }
+
+  addProduct(username : String, name : String): Observable<User> {
+    const url = `${this.usersUrl}/${username}/cart/add`;
+    return this.http.put<User>(url, name, this.httpOptions).pipe(
+      tap(_ => this.log(`add to cart`)),
+      catchError(this.handleError<User>(`addProduct`))
+    );
+  }
+
+  removeProduct(username : String, name : String): Observable<User> {
+    const url = `${this.usersUrl}/${username}/cart/remove/${name}`;
+    return this.http.put<User>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`remove from cart`)),
+      catchError(this.handleError<User>(`removeProduct`))
+    );
+  }
 
 /**
    * Handle Http operation that failed.
