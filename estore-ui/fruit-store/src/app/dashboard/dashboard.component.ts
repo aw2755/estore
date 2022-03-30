@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
   }
+  /**
+   * get user
+   */
 
   getProducts(): void {
     this.productService.getProducts()

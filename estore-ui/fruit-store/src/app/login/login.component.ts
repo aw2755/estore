@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  users: User[] = [];
+
+  
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -19,15 +20,25 @@ export class LoginComponent implements OnInit {
   }
 
   getUsers(username: String): void {
-    if (username == "admin") {
-        this.router.navigateByUrl("/products");
-    }
-    else
-    {
-        this.router.navigateByUrl("/dashboard")
-    }
+    /**If username is admin than go to products*/
+    this.userService.getUser(username)
+      .subscribe(users => {
+        if (users.username === 'admin') {
+          this.router.navigateByUrl("/products");
+        } 
+        /**  check if username exist*/
+        else if (users.username === username) {
+          //sessionStorage.setItem('currentUser', JSON.stringify(users));
+          
+          this.router.navigateByUrl("/dashboard");
+        }
+        else {
+          alert('User not found');
+        }
+      });
   }
 
+}
   // add(name: string): void {
   //   name = name.trim();
   //   if (!name) { return; }
@@ -36,5 +47,4 @@ export class LoginComponent implements OnInit {
   //       this.users.push(user);
   //     });
   // }
-
-}
+//

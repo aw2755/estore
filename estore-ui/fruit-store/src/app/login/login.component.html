@@ -9,10 +9,11 @@
                 <form>
                     <form>
                         <div class="mb-3">
+                            <!-- <label for="username">Username</label> -->
                           <label for="Username" class="form-label">Username</label>
                           <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username" #userName (submit)="getUsers(userName.value); userName.value=''">
                         </div>
-                        
+                        <!--    Add a button to getUser and has a-->
                         <button type="submit" class="btn btn-primary" (click)="getUsers(userName.value); userName.value=''">Login</button>
                       </form>
                 </form>
