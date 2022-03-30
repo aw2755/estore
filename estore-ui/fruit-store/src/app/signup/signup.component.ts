@@ -22,12 +22,15 @@ export class SignupComponent implements OnInit {
     .subscribe(users => this.users = users);
   }
 
-  //  add(user : User): void {
-    
-  //    if (!user) { return; }
-  //    this.userService.addUser({ user } as User)
-  //      .subscribe((user: User) => {
-  //        this.users.push(user);
-  //      });
-  //  }
+   add(name : string): void 
+   {
+     name = name.trim();
+     const user : User = {
+       username: name
+     }
+      if (!name) {return;}
+      this.userService.addUser(user).subscribe((user) => {
+         this.users.push(user);
+       });
+   }
 }
