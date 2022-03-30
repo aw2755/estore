@@ -1,18 +1,16 @@
 <nav class = "SC">
+  <div>WELCOME, {{currentUser.username}}!</div>
+  <a routerLink="/shopping">
+    <img alt="shoppingCart" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" width="50" height="60">
+  </a>
   <a routerLink="/login">
+    
     <img src="https://cdn.dribbble.com/users/1797873/screenshots/5310497/logout.gif" height="80" width="100">
   </a>
 </nav>
-<nav class = "SC">  
-  <a routerLink="/shopping">
-    <img alt="shoppingCart" src="https://i.pinimg.com/originals/66/22/ab/6622ab37c6db6ac166dfec760a2f2939.gif" width="50" height="50">
-  </a>
-</nav>
 
-<div>{{currentUser.username}}</div>
- 
+<app-product-search></app-product-search>
 
-  <app-product-search></app-product-search>
 
 <h2>Products</h2>
 <div class="products-menu">

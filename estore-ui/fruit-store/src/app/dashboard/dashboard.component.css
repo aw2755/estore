@@ -3,7 +3,15 @@
 .SC
 {
   text-align: right;
-  
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.push {
+  margin-left: auto;
 }
 
 h2 

@@ -20,27 +20,21 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getUsers(name: string): void {
+  getUsers(name: string): void 
+  {
     this.userService.getUser(name)
 
-      .subscribe(user => {
-        if (user) {
+      .subscribe(user => 
+        {
+        if (user) 
+        {
           sessionStorage.setItem('currentUser', JSON.stringify(user));
           this.router.navigate(['/dashboard']);
-        } else {
-          alert('User not found');
+        } else 
+        {
+          alert('User "' + name + '" not found');
         }
   
+        });
+   }
 }
-);
-}
-}
-  // add(name: string): void {
-  //   name = name.trim();
-  //   if (!name) { return; }
-  //   this.userService.addUser({ name } as User)
-  //     .subscribe((user: User) => {
-  //       this.users.push(user);
-  //     });
-  // }
-//
