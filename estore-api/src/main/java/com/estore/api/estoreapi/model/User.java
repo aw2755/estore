@@ -1,5 +1,6 @@
 package com.estore.api.estoreapi.model;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,9 +16,11 @@ public class User {
     static final String STRING_FORMAT = "User [id=%d, username=%s]";
 
     @JsonProperty("username") private String userName;
+    public ArrayList<Product> cart;
 
     public User(@JsonProperty("username") String userName) {
         this.userName = userName;
+        this.cart = new ArrayList<>();
     }
 
 
@@ -31,7 +34,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [userName=" + userName + "]";
+        return "User [userName=" + userName + ", cart=" + cart + "]";
     }
 
 
