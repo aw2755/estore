@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
 
   getProducts(): void {
     this.productService.getProducts()
-      .subscribe(products => this.products = products.slice(0, products.length));
+      .subscribe(products => this.products = products);
   }
 
   add(name : string): void {

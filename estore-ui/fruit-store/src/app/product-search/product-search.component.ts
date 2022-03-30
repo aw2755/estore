@@ -6,6 +6,8 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { User } from '../user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-product-search',
@@ -15,8 +17,11 @@ import { ProductService } from '../product.service';
 export class ProductSearchComponent implements OnInit {
   products$!: Observable<Product[]>;
   private searchTerms = new Subject<string>();
+  currentUser!: User;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private userService: UserService) {
+    
+  }
 
   // Push a search term into the observable stream.
   search(term: string): void 
@@ -24,9 +29,8 @@ export class ProductSearchComponent implements OnInit {
     this.searchTerms.next(term);
   }
 
-  
-
   ngOnInit(): void {
+    this.currentUser = JSON.parse(sessionStorage['currentUser']);
     this.products$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -37,5 +41,10 @@ export class ProductSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.productService.searchProducts(term)),
     );
+  }
+
+  add(name : string): void {
+    this.userService.addProduct(this.currentUser.username, name).subscribe();
+    alert("added " + name + " to cart");
   }
 }
