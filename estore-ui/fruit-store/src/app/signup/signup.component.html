@@ -12,7 +12,9 @@
                           <label for="username" class="form-label">Username</label>
                           <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username" #userName  (submit)="add(userName.value); userName.value=''"/>
                         </div>
+
                         <button type="submit" class="btn btn-primary" (click)= "add(userName.value); userName.value=''">Sign up </button>
+
                       </form>
                 </form>
                 <a routerLink="/login">Already have an account? Click there to log up</a>

@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
     .subscribe(users => this.users = users);
   }
 
+
   add(username:string): void{
     const user : User = {
       username: username,
@@ -35,4 +36,5 @@ export class SignupComponent implements OnInit {
     this.userService.addUser(user).subscribe(user => {this.users.push(user)
     })
   }
+
 }
