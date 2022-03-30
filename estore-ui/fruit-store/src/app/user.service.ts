@@ -9,7 +9,7 @@ import { User } from './user';
 })
 export class UserService {
 
-  private usersUrl = "https://localhost:8080/user";
+  private usersUrl = "http://localhost:8080/user";
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -20,6 +20,7 @@ export class UserService {
     private messageService: MessageService) { }
 
   ngOnInit(): void {
+  
       
   }
 
@@ -61,6 +62,7 @@ export class UserService {
          catchError(this.handleError<User>('adduser'))
        );
      }
+
 
 /**
    * Handle Http operation that failed.

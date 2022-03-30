@@ -69,6 +69,7 @@ public class UserController {
 
     @PostMapping("")
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        LOG.info("POST /user/" + user);
         try {
             User newUser = userDAO.createUser(user);
             if (newUser == null) {
