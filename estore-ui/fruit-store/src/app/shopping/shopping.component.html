@@ -11,9 +11,14 @@
 <div class="products-menu">
   <ul class="products">
     <li *ngFor="let product of cart">
-      <p>{{product.name}}</p>
-      <button type="button" class="delete" title="delete product" (click)="remove(product.name)">x</button>
+      <div>
+        {{product.name}}, Price: ${{product.price}}
+        <button type="button" class="delete" title="delete product" (click)="remove(product.name)">x</button>
+      </div>
     </li>
+    <div>
+      Total price: 
+    </div>
   </ul>
 
 </div>
