@@ -34,9 +34,11 @@ export class ShoppingComponent implements OnInit {
     alert("removed " + name + " from cart");
   }
 
-  checkout(): void {
-    this.userService.checkoutProducts(this.currentUser.username).subscribe();
-    this.router.navigateByUrl("/dashboard");
+  checkout(): void 
+  {
+      this.userService.checkoutProducts(this.currentUser.username).subscribe();
+      this.router.navigateByUrl("/dashboard");
+      alert("You have successfully checked out")
   }
 
 }
