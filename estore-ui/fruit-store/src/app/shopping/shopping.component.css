@@ -1,3 +1,8 @@
+h1
+{
+    text-align: center;
+}
+
 hr{
     width: 100%;
     float: right;
@@ -48,16 +53,16 @@ hr{
 
 nav a 
 {
-    padding: 1rem;
-    text-decoration: none;
-    margin-top: 10px;
-    display: inline-block;
-    background-color: #e8e8e8;
-    color: #3d3d3d;
-    border-radius: 4px;
-  }
+  padding: 1rem;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #e8e8e8;
+  color: #3d3d3d;
+  border-radius: 4px;
+}
 
-h1
-{
-    text-align: center;
+.checkout2{
+  display: flex;
+  justify-content: flex-end;
 }
