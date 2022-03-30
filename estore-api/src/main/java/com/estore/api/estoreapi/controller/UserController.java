@@ -109,14 +109,13 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{username}/cart/remove/{name}")
+    @DeleteMapping("/{username}/cart/remove/{name}")
     public ResponseEntity<User> deleteProduct(@PathVariable String username, @PathVariable String name) {
         LOG.info("DELETE /user/" + username + "/cart/remove/" + name);
         try {
             User selectedUser = userDAO.getUser(username);
             selectedUser.deleteProduct(name);
-            User updated = userDAO.updateUser(selectedUser);
-            return new ResponseEntity<>(updated, HttpStatus.OK);
+            return new ResponseEntity<>(selectedUser, HttpStatus.OK);
         } catch(Exception e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

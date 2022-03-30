@@ -38,6 +38,7 @@ public class User {
         for (Product product : this.cart) {
             if (productName.equals(product.getName())) {
                 cart.remove(product);
+                return;
             }
         }
     }

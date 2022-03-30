@@ -80,7 +80,7 @@ export class UserService {
 
   removeProduct(username : String, name : String): Observable<User> {
     const url = `${this.usersUrl}/${username}/cart/remove/${name}`;
-    return this.http.put<User>(url, this.httpOptions).pipe(
+    return this.http.delete<User>(url, this.httpOptions).pipe(
       tap(_ => this.log(`remove from cart`)),
       catchError(this.handleError<User>(`removeProduct`))
     );
