@@ -13,7 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserComponent } from './user/user.component';
 import { ShoppingComponent } from './shopping/shopping.component';
-import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   imports: [
@@ -33,7 +32,6 @@ import { CheckoutComponent } from './checkout/checkout.component';
     SignupComponent,
     UserComponent,
     ShoppingComponent,
-    CheckoutComponent,
   ],
   bootstrap: [ AppComponent ]
 })
