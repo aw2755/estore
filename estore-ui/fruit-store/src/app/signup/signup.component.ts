@@ -27,10 +27,7 @@ export class SignupComponent implements OnInit {
   add(username:string): void{
     const user : User = {
       username: username,
-    }
-
-    //console.log(name)
-    
+    }    
 
     if (!username) {return;}
     this.userService.addUser(user).subscribe(user => {this.users.push(user)

@@ -21,4 +21,9 @@ export class DashboardComponent implements OnInit {
       .subscribe(products => this.products = products.slice(0, products.length));
   }
 
+  add(name: string): void
+  {
+    
+  }
+
 }
