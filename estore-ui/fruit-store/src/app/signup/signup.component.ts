@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
   add(username:string): void{
     const user : User = {
       username: username,
+      shoppingCat: [],
     }    
 
     if (!username) {return;}
